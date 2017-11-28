@@ -25,14 +25,21 @@ b:SetFlowFieldCellsTowards(id,targetid)
 scale = 1
 b:SetFlowFieldLengthsFromDistance(id,targetid,scale)
 -- color is: R G B Alpha
-startcolor={255,0,0,255}
-endcolor={0,255,0,255}
-b:SetFlowFieldColorsFromDistance(id,targetid,startcolor,endcolor)
+nearcolor={255,0,0,255}
+farcolor={0,255,0,255}
+b:SetFlowFieldColorsFromDistance(id,targetid,nearcolor,farcolor)
+
+--make sphere follow the field movement (by parenting it)
+b:SetParent(targetid,id)
+b:TweenMoveX(id,-5,5)
 
 -- init mainloop
 return function()
-  -- wait x sec
+  -- wait x secs
   coroutine.yield(5)
+  -- then scale whole field and child object
+  b:TweenScale(id,0.2,3)
+
   -- reset all cells: colors, rotations, lengths
 --  b:SetFlowFieldCellLengths(id,0.1)
 --  b:SetFlowFieldCellRotations(id,0,0,0)
