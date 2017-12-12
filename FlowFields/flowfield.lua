@@ -19,11 +19,11 @@ b:CreateSphere(targetid,0.2,0,1,0)
 b:SetColor(targetid,255,0,0)
 
 -- all arrows will point towards target gameobject
-b:SetFlowFieldCellsTowards(id,targetid)
+b:SetFlowFieldCellsTowards(id,targetid,false)
 
 -- set arrow lenghts from distance to target
-scale = 1
-b:SetFlowFieldLengthsFromDistance(id,targetid,scale)
+scale = 5
+b:SetFlowFieldLengthsFromDistance(id,targetid,scale,false)
 -- color is: R G B Alpha
 nearcolor={255,0,0,255}
 farcolor={0,255,0,255}
@@ -38,7 +38,7 @@ return function()
   -- wait x secs
   coroutine.yield(5)
   -- then scale whole field and child object
-  b:TweenScale(id,0.2,3)
+  -- b:TweenScale(id,0.2,3)
 
   -- reset all cells: colors, rotations, lengths
 --  b:SetFlowFieldCellLengths(id,0.1)
