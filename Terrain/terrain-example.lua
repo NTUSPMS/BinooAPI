@@ -1,5 +1,6 @@
 -- terrain example (not in current build yet)
 b = BinooAPI
+b:ClearObjects()
 
 id="terrain"
 size=100 -- in meters
@@ -12,7 +13,9 @@ b:CreateTerrain(id,size,px,py,pz)
 b:PhotoSphere_HideSpheres()
 
 -- allow player to move by nodding head
-b:TogglePlayerMovement()
+b:TogglePlayerMovement(true)
+b:SetPlayerMovementSpeed(15)
+b:AddTerrainEdgeColliders(id)
 
 -- mainloop TODO
 return function()
