@@ -1,4 +1,4 @@
--- terrain example (not in current build yet)
+-- terrain example
 b = BinooAPI
 b:ClearObjects()
 
