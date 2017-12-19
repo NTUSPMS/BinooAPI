@@ -12,6 +12,7 @@ px=-size/2
 py=-20
 pz=px
 b:CreateTerrain(id,size,px,py,pz,maxheight)
+b:SetTerrainTextureFromLibrary(id,"grass")
 
 -- perlinnoise heightmap
 --b:SetTerrainHeightmapFromPerlinNoise(id,0.007,0.05)
