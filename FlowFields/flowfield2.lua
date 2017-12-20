@@ -13,15 +13,27 @@ targetid = "sphere"
 sx = 2.5
 sy = 0
 sz = 0
-b:CreateSphere(targetid,0.2,sx,sy,sz)
+b:CreateSphere(targetid,0.4,sx,sy,sz)
 b:SetColor(targetid,255,0,0)
+b:AddGazeTarget(targetid)
+b:AddEvent(targetid,"CLICK","ClickRed")
+function ClickRed()
+    b:ShowMessage("Clicked red")
+    b:SetPlayerPosition(sx,sy,sz)
+end
 
 targetid2 = "sphere2"
 sx2 = -2.5
 sy2 = 0
 sz2 = 0
-b:CreateSphere(targetid2,0.2,sx2,sy2,sz2)
+b:CreateSphere(targetid2,0.4,sx2,sy2,sz2)
 b:SetColor(targetid2,0,0,255)
+b:AddGazeTarget(targetid2)
+b:AddEvent(targetid2,"CLICK","ClickBlue")
+function ClickBlue()
+    b:ShowMessage("Clicked blue")
+    b:SetPlayerPosition(sx2,sy2,sz2)
+end
 
 --b:Log("here")
 
