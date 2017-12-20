@@ -9,11 +9,18 @@ size = 5
 b:CreateFlowField(id,size,0)
 
 targetid = "sphere"
-sx = 0
+sx = 2.5
 sy = 0
 sz = 0
 b:CreateSphere(targetid,0.2,sx,sy,sz)
 b:SetColor(targetid,255,0,0)
+
+targetid2 = "sphere2"
+sx2 = -2.5
+sy2 = 0
+sz2 = 0
+b:CreateSphere(targetid2,0.2,sx2,sy2,sz2)
+b:SetColor(targetid2,0,0,255)
 
 --b:Log("here")
 
@@ -23,13 +30,24 @@ for z=0, size-1 do
         for x=0, size-1 do
             -- get distance to sphere for this cell
             dist = b:GetDistance(x-size/2,y-size/2,z-size/2,sx,sy,sz)
+            dist2 = b:GetDistance(x-size/2,y-size/2,z-size/2,sx2,sy2,sz2)
+            
+            -- get closest object
+            targetpoint = targetid2
+            targetdist = dist2
+            if (dist<dist2) then
+                targetpoint = targetid
+                targetdist = dist
+            end
+            
             -- get angle towards sphere from this cell
-            b:SetFlowFieldCellRotationTowards(id,targetid,x,y,z)
-            b:SetFlowFieldCellLength(id,x,y,z,dist*0.2)
+            b:SetFlowFieldCellRotationTowards(id,targetpoint,x,y,z)
+            b:SetFlowFieldCellLength(id,x,y,z,targetdist*0.2)
+            
             -- color by distance to target
             nearcolor={255,0,0,255}
             farcolor={0,255,0,255}
-            b:SetCellColorFromDistanceToObject(id,targetid,x,y,z,nearcolor,farcolor)
+            b:SetCellColorFromDistanceToObject(id,targetpoint,x,y,z,nearcolor,farcolor)
         end
     end
 end
