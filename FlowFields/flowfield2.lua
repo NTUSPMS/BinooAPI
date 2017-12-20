@@ -2,6 +2,7 @@
 b = BinooAPI
 b:ClearObjects()
 b:DebugMode(true)
+b:PhotoSphere_HideSpheres()
 
 id = "flowfield"
 -- params: id, arraySize (x*x*x), worldSize (in meters, not used yet) 
@@ -41,7 +42,7 @@ for z=0, size-1 do
             end
             
             -- get angle towards sphere from this cell
-            b:SetFlowFieldCellRotationTowards(id,targetpoint,x,y,z)
+            b:SetFlowFieldCellRotationTowards(id,targetpoint,x,y,z,true)
             b:SetFlowFieldCellLength(id,x,y,z,targetdist*0.2)
             
             -- color by distance to target
