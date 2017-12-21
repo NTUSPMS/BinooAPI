@@ -3,23 +3,30 @@ b = BinooAPI
 
 id = "button"
 b:CreateButton(id,"Click!")
-b:SetPosition(id,-5,0,1)
+b:SetPosition(id,-5,0,2)
 b:AddEvent(id,"CLICK","MyClick","mykey")
 
 function MyClick(sender, param)
     -- query button data first
-    b:DataGet(param,"DataCallBack")
+    b:GetData(param,"DataCallBack")
+    -- could play some animation or effect so that user waits for server reply
 end
 
 -- this is called after receiving reply from server to DataGet() query
 function DataCallBack(key,data)
-    b:Log("key:"..tostring(key))
-    b:Log("data:"..tostring(data))
-    -- set server data value
---    b:DataSet(param,"1","DataCallBack")
+    -- if no data, nobody has set it yet
+    if (data==nil) then
+        b:ShowMessage("Congratulations, you were the first one!")
+        -- save my username for this key data
+        b:SetData(key,b:GetUserName())
+    else -- had some data value for this key already
+        b:ShowMessage(data.." already founded this box..")
+    end
 end
 
+
 return function()
+  -- mainloop
   while true do
     coroutine.yield(0.16)
   end
