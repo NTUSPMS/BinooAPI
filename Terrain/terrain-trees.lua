@@ -1,3 +1,4 @@
+-- add trees to terrain using RGB texture
 b = BinooAPI
 b:ClearObjects()
 b:PhotoSphere_HideSpheres()
@@ -19,11 +20,13 @@ return function()
         coroutine.yield(0.2)
     end
     -- add trees
-    b:AssignTerrainTree(id,"library/terrain/pinetree",0)
+    b:AssignTerrainTree(id,"library/terrain/willowtree",0)
+    b:AssignTerrainTree(id,"library/terrain/redflower",1)
     
     -- load and wait for treemap texture
     b:SetWaitForMe(true)
-    b:SetTerrainTreemap(id,url,0.1,0.1,1,true)
+    url = "https://cdn.pbrd.co/images/GZXRNWB.png"
+    b:SetTerrainTreemap(id,url,0.01,0.01,0.0001,true)
     while b:WaitForMe()==true do
         coroutine.yield(0.2)
     end
