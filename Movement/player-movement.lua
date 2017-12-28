@@ -24,6 +24,12 @@ CreateJumpTarget("right",10,0,0,255,0,0)
 CreateJumpTarget("front",0,0,10,255,255,0)
 CreateJumpTarget("back",0,0,-10,0,255,255)
 
+-- decoration ground plane
+g="ground"
+b:CreatePlane(g,50,50,1,1)
+b:MoveY(g,-5)
+b:AssignLibraryTexture(g,"grass")
+
 -- init mainloop
 return function()
   -- main loop
