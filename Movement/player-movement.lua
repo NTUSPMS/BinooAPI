@@ -3,16 +3,11 @@ b = BinooAPI
 b:ClearObjects()
 b:PhotoSphere_HideSpheres()
 
-CreateJumpTarget("middle",0,0,0,0,0,255)
-CreateJumpTarget("left",-10,0,0,0,255,0)
-CreateJumpTarget("right",10,0,0,255,0,0)
-CreateJumpTarget("front",0,0,10,255,255,0)
-CreateJumpTarget("back",0,0,-10,0,255,255)
-
 function JumpTo(sender)
-    p = b:GetPosition(tostring(sender))
-    if p[0]~=-1 and p[1]~=-1 and p[2]~=-1 then
-        b:TweenMovePlayer(p[0],p[1],p[2],2)
+    p = b:GetPosition(sender)
+    -- NOTE: Lua array starts from index 1
+    if p[1]~=-1 and p[2]~=-1 and p[3]~=-1 then
+        b:TweenMovePlayer(p[1],p[2],p[3],2)
     end
 end
 
@@ -22,6 +17,12 @@ function CreateJumpTarget(target,posx,posy,posz,red,green,blue)
     b:AddGazeTarget(target)
     b:AddEvent(target,"CLICK","JumpTo")
 end
+
+CreateJumpTarget("middle",0,0,0,0,0,255)
+CreateJumpTarget("left",-10,0,0,0,255,0)
+CreateJumpTarget("right",10,0,0,255,0,0)
+CreateJumpTarget("front",0,0,10,255,255,0)
+CreateJumpTarget("back",0,0,-10,0,255,255)
 
 -- init mainloop
 return function()
