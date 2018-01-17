@@ -7,9 +7,11 @@ isplaying = false
 
 function PlayAudio(sender,param)
     if isplaying==true then
+        b:SetButtonText(tostring(sender),"Play")
         b:StopAllSounds()
         isplaying=false
     else
+        b:SetButtonText(tostring(sender),"Stop")
         b:PlaySoundFromURL(param)
         isplaying=true
     end
