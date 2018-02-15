@@ -8,3 +8,7 @@ b=BinooAPI
 -- 360 video player
 url = "https://bitmovin-a.akamaihd.net/content/playhouse-vr/m3u8s/105560.m3u8"
 b:PlayURLVideo360(url)
+
+-- play local HLS live stream
+-- url = "http://127.0.0.1/hls/live.m3u8"
+-- b:PlayURLVideo2D(url)
